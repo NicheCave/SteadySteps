@@ -1,6 +1,10 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Backend", "Backend\Backend.csproj", "{72CB40DE-7B87-467C-92BC-5B724185756C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SteadySteps.PL", "SteadySteps.PL\SteadySteps.PL.csproj", "{72CB40DE-7B87-467C-92BC-5B724185756C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SteadySteps.DAL", "SteadySteps.DAL\SteadySteps.DAL.csproj", "{C06C5640-7C14-4A03-86A8-80C1687E0F0D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SteadySteps.BLL", "SteadySteps.BLL\SteadySteps.BLL.csproj", "{CAE26A8B-6EDC-4F8E-AAEA-041B1B10F5DB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -12,5 +16,13 @@ Global
 		{72CB40DE-7B87-467C-92BC-5B724185756C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{72CB40DE-7B87-467C-92BC-5B724185756C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{72CB40DE-7B87-467C-92BC-5B724185756C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C06C5640-7C14-4A03-86A8-80C1687E0F0D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C06C5640-7C14-4A03-86A8-80C1687E0F0D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C06C5640-7C14-4A03-86A8-80C1687E0F0D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C06C5640-7C14-4A03-86A8-80C1687E0F0D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CAE26A8B-6EDC-4F8E-AAEA-041B1B10F5DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CAE26A8B-6EDC-4F8E-AAEA-041B1B10F5DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CAE26A8B-6EDC-4F8E-AAEA-041B1B10F5DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CAE26A8B-6EDC-4F8E-AAEA-041B1B10F5DB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

@@ -1,0 +1,16 @@
+C:\Users\Famouscave\RiderProjects\SteadySteps\SteadyStepsBackend\SteadySteps.BLL\bin\Debug\net8.0\SteadySteps.BLL.deps.json
+C:\Users\Famouscave\RiderProjects\SteadySteps\SteadyStepsBackend\SteadySteps.BLL\bin\Debug\net8.0\SteadySteps.BLL.dll
+C:\Users\Famouscave\RiderProjects\SteadySteps\SteadyStepsBackend\SteadySteps.BLL\bin\Debug\net8.0\SteadySteps.BLL.pdb
+C:\Users\Famouscave\RiderProjects\SteadySteps\SteadyStepsBackend\SteadySteps.BLL\bin\Debug\net8.0\SteadySteps.DAL.dll
+C:\Users\Famouscave\RiderProjects\SteadySteps\SteadyStepsBackend\SteadySteps.BLL\bin\Debug\net8.0\SteadySteps.DAL.pdb
+C:\Users\Famouscave\RiderProjects\SteadySteps\SteadyStepsBackend\SteadySteps.BLL\obj\Debug\net8.0\SteadySteps.BLL.csproj.AssemblyReference.cache
+C:\Users\Famouscave\RiderProjects\SteadySteps\SteadyStepsBackend\SteadySteps.BLL\obj\Debug\net8.0\SteadySteps.BLL.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Famouscave\RiderProjects\SteadySteps\SteadyStepsBackend\SteadySteps.BLL\obj\Debug\net8.0\SteadySteps.BLL.AssemblyInfoInputs.cache
+C:\Users\Famouscave\RiderProjects\SteadySteps\SteadyStepsBackend\SteadySteps.BLL\obj\Debug\net8.0\SteadySteps.BLL.AssemblyInfo.cs
+C:\Users\Famouscave\RiderProjects\SteadySteps\SteadyStepsBackend\SteadySteps.BLL\obj\Debug\net8.0\SteadySteps.BLL.csproj.CoreCompileInputs.cache
+C:\Users\Famouscave\RiderProjects\SteadySteps\SteadyStepsBackend\SteadySteps.BLL\obj\Debug\net8.0\SteadySteps.BLL.sourcelink.json
+C:\Users\Famouscave\RiderProjects\SteadySteps\SteadyStepsBackend\SteadySteps.BLL\obj\Debug\net8.0\SteadySt.B342C4FE.Up2Date
+C:\Users\Famouscave\RiderProjects\SteadySteps\SteadyStepsBackend\SteadySteps.BLL\obj\Debug\net8.0\SteadySteps.BLL.dll
+C:\Users\Famouscave\RiderProjects\SteadySteps\SteadyStepsBackend\SteadySteps.BLL\obj\Debug\net8.0\refint\SteadySteps.BLL.dll
+C:\Users\Famouscave\RiderProjects\SteadySteps\SteadyStepsBackend\SteadySteps.BLL\obj\Debug\net8.0\SteadySteps.BLL.pdb
+C:\Users\Famouscave\RiderProjects\SteadySteps\SteadyStepsBackend\SteadySteps.BLL\obj\Debug\net8.0\ref\SteadySteps.BLL.dll
