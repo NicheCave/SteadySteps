@@ -14,3 +14,5 @@ C:\Users\Famouscave\RiderProjects\SteadySteps\SteadyStepsBackend\SteadySteps.BLL
 C:\Users\Famouscave\RiderProjects\SteadySteps\SteadyStepsBackend\SteadySteps.BLL\obj\Debug\net8.0\refint\SteadySteps.BLL.dll
 C:\Users\Famouscave\RiderProjects\SteadySteps\SteadyStepsBackend\SteadySteps.BLL\obj\Debug\net8.0\SteadySteps.BLL.pdb
 C:\Users\Famouscave\RiderProjects\SteadySteps\SteadyStepsBackend\SteadySteps.BLL\obj\Debug\net8.0\ref\SteadySteps.BLL.dll
+C:\Users\Famouscave\RiderProjects\SteadySteps\SteadyStepsBackend\SteadySteps.BLL\bin\Debug\net8.0\SteadySteps.BLL.runtimeconfig.json
+C:\Users\Famouscave\RiderProjects\SteadySteps\SteadyStepsBackend\SteadySteps.BLL\obj\Debug\net8.0\SteadySteps.BLL.genruntimeconfig.cache
