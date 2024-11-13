@@ -1,3 +1,0 @@
-﻿<Project>
-  <Import Project="..\build\SteadySteps.PL.props" />
-</Project>
