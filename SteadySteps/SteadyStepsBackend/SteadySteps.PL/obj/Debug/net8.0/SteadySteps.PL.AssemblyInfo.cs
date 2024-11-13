@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SteadySteps.PL")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8515693a72fa4cac60e25db40f8a31d235fb2d9f")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+45c5bd9dd553de38b85882fd71a633d90a9b5e7d")]
 [assembly: System.Reflection.AssemblyProductAttribute("SteadySteps.PL")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SteadySteps.PL")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
