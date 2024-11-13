@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SteadySteps.DAL")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ee228b79c465408d384f0fbd425ee85d278124b1")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8af2093913b500b86f497b34a2742e5ba89626b0")]
 [assembly: System.Reflection.AssemblyProductAttribute("SteadySteps.DAL")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SteadySteps.DAL")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

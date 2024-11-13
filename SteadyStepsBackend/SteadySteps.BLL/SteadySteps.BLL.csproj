@@ -10,9 +10,4 @@
       <ProjectReference Include="..\SteadySteps.DAL\SteadySteps.DAL.csproj" />
     </ItemGroup>
 
-    <ItemGroup>
-      <Folder Include="ServiceImplementations\" />
-      <Folder Include="ServiceInterfaces\" />
-    </ItemGroup>
-
 </Project>
