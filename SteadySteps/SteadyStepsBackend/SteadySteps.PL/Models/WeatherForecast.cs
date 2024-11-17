@@ -1,4 +1,4 @@
-namespace SteadySteps.PL;
+namespace SteadySteps.PL.Models;
 
 public class WeatherForecast
 {
