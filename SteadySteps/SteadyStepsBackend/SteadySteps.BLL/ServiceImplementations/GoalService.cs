@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using SteadySteps.BLL.ServiceInterfaces;
 using Microsoft.EntityFrameworkCore;
 using SteadySteps.DAL.Models;
 
@@ -13,6 +14,11 @@ namespace SteadySteps.BLL.ServiceImplementations
         public GoalService(DbContext context)
         {
             _context = context;
+        }
+        
+        public async Task<IEnumerable<Goal>> GetGoalsByUserIdAsync(int userId)
+        {
+            return await _context.Set<Goal>().Where(h => h.UserId == userId).ToListAsync();
         }
 
         public async Task<Goal> GetGoalByIdAsync(int goalId)

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using SteadySteps.DAL.Models;
+using SteadySteps.BLL.ServiceInterfaces;
 
 namespace SteadySteps.BLL.ServiceImplementations
 {
@@ -15,14 +16,14 @@ namespace SteadySteps.BLL.ServiceImplementations
             _context = context;
         }
 
-        public async Task<Habit> GetHabitByIdAsync(int habitId)
+        public async Task<IEnumerable<Habit>> GetHabitsByUserIdAsync(int userId)
         {
-            return await _context.Set<Habit>().FindAsync(habitId );
+            return await _context.Set<Habit>().Where(h => h.UserId == userId).ToListAsync();
         }
 
-        public async Task<IEnumerable<Habit>> GetAllHabitsAsync()
+        public async Task<Habit> GetHabitByIdAsync(int habitId)
         {
-            return await _context.Set<Habit>().ToListAsync();
+            return await _context.Set<Habit>().FindAsync(habitId);
         }
 
         public async Task<Habit> CreateHabitAsync(Habit habit)
@@ -32,17 +33,19 @@ namespace SteadySteps.BLL.ServiceImplementations
             return habit;
         }
 
-        public async Task<Habit> UpdateHabitAsync(Habit habit)
+        public async Task UpdateHabitAsync(Habit habit)
         {
-            _context.Set<Habit>().Update(habit);
+            _context.Entry(habit).State = EntityState.Modified;
             await _context.SaveChangesAsync();
-            return habit;
         }
 
         public async Task<bool> DeleteHabitAsync(int habitId)
         {
             var habit = await _context.Set<Habit>().FindAsync(habitId);
-            if (habit == null) return false;
+            if (habit == null)
+            {
+                return false;
+            }
 
             _context.Set<Habit>().Remove(habit);
             await _context.SaveChangesAsync();

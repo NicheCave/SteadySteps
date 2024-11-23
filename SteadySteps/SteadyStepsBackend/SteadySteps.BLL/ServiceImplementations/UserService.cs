@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using SteadySteps.DAL.Models;
+using SteadySteps.BLL.ServiceInterfaces;
 
 namespace SteadySteps.BLL.ServiceImplementations
 {

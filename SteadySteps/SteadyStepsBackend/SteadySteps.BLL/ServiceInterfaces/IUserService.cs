@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using SteadySteps.DAL.Models;
 
-namespace SteadySteps.BLL.ServiceImplementations
+namespace SteadySteps.BLL.ServiceInterfaces
 {
     public interface IUserService
     {
