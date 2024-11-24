@@ -3,15 +3,16 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using SteadySteps.BLL.ServiceInterfaces;
 using Microsoft.EntityFrameworkCore;
+using SteadySteps.DAL.Data;
 using SteadySteps.DAL.Models;
 
 namespace SteadySteps.BLL.ServiceImplementations
 {
     public class HabitLogService : IHabitLogService
     {
-        private readonly DbContext _context;
+        private readonly SteadyStepsDbContext _context;
 
-        public HabitLogService(DbContext context)
+        public HabitLogService(SteadyStepsDbContext context)
         {
             _context = context;
         }

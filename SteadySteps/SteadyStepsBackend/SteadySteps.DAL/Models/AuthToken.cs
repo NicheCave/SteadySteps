@@ -1,14 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using Microsoft.EntityFrameworkCore;
+using System.Text.Json.Serialization;
 
 namespace SteadySteps.DAL.Models;
 
 public partial class AuthToken
 {
     [Key]
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int TokenId { get; set; }
 
     public int? UserId { get; set; }
@@ -22,7 +22,10 @@ public partial class AuthToken
     [Column(TypeName = "timestamp without time zone")]
     public DateTime? ExpiresAt { get; set; }
 
+    public bool IsDeleted { get; set; } = false;
+
     [ForeignKey("UserId")]
     [InverseProperty("AuthTokens")]
+    [JsonIgnore] 
     public virtual User? User { get; set; }
 }

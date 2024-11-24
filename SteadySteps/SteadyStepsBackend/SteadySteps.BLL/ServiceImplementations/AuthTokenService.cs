@@ -3,15 +3,16 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using SteadySteps.BLL.ServiceInterfaces;
 using Microsoft.EntityFrameworkCore;
+using SteadySteps.DAL.Data;
 using SteadySteps.DAL.Models;
 
 namespace SteadySteps.BLL.ServiceImplementations
 {
     public class AuthTokenService : IAuthTokenService
     {
-        private readonly DbContext _context;
+        private readonly SteadyStepsDbContext _context;
 
-        public AuthTokenService(DbContext context)
+        public AuthTokenService(SteadyStepsDbContext context)
         {
             _context = context;
         }

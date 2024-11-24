@@ -2,15 +2,14 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using Microsoft.EntityFrameworkCore;
+using System.Text.Json.Serialization;
 
 namespace SteadySteps.DAL.Models;
 
-[Microsoft.EntityFrameworkCore.Index("Email", Name = "Users_Email_Key", IsUnique = true)]
-[Microsoft.EntityFrameworkCore.Index("Username", Name = "Users_Username_Key", IsUnique = true)]
 public partial class User
 {
     [Key]
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int UserId { get; set; }
 
     [StringLength(50)]
@@ -31,7 +30,10 @@ public partial class User
     [Column(TypeName = "timestamp without time zone")]
     public DateTime? LastLogin { get; set; }
 
+    public bool IsDeleted { get; set; } = false;
+
     [InverseProperty("User")]
+    [JsonIgnore]
     public virtual ICollection<AuthToken> AuthTokens { get; set; } = new List<AuthToken>();
 
     [InverseProperty("User")]

@@ -9,6 +9,7 @@ namespace SteadySteps.DAL.Models;
 public partial class Habit
 {
     [Key]
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int HabitId { get; set; }
 
     public int? UserId { get; set; }

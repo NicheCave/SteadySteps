@@ -1,6 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore;
 using SteadySteps.BLL.ServiceImplementations;
 using SteadySteps.DAL.Models;
+using SteadySteps.DAL.Data;
 using SteadySteps.BLL.ServiceInterfaces;
 
 namespace SteadySteps.PL.Controllers
@@ -10,21 +13,20 @@ namespace SteadySteps.PL.Controllers
     public class UserController : ControllerBase
     {
         private readonly IUserService _userService;
-
+        
         public UserController(IUserService userService)
         {
             _userService = userService;
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<User>> GetUser(int id)
+        public async Task<IActionResult> GetUser(int id)
         {
-            var user = await _userService.GetUserByIdAsync(id);
-            if (user == null)
-            {
+            var userDto = await _userService.GetUserByIdAsync(id);
+            if (userDto == null)
                 return NotFound();
-            }
-            return Ok(user);
+
+            return Ok(userDto);
         }
 
         [HttpPost]

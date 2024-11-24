@@ -8,6 +8,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\SteadySteps.DAL\SteadySteps.DAL.csproj" />
+      <ProjectReference Include="..\SteadySteps.DTO\SteadySteps.DTO.csproj" />
     </ItemGroup>
 
 </Project>

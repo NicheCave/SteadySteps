@@ -4,14 +4,15 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using SteadySteps.DAL.Models;
 using SteadySteps.BLL.ServiceInterfaces;
+using SteadySteps.DAL.Data;
 
 namespace SteadySteps.BLL.ServiceImplementations
 {
     public class HabitService : IHabitService
     {
-        private readonly DbContext _context;
+        private readonly SteadyStepsDbContext _context;
 
-        public HabitService(DbContext context)
+        public HabitService(SteadyStepsDbContext context)
         {
             _context = context;
         }

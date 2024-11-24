@@ -2,23 +2,34 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using SteadySteps.DTO.Objects;
 using SteadySteps.DAL.Models;
 using SteadySteps.BLL.ServiceInterfaces;
+using SteadySteps.DAL.Data;
+using SteadySteps.DTO;
 
 namespace SteadySteps.BLL.ServiceImplementations
 {
     public class UserService : IUserService
     {
-        private readonly DbContext _context;
+        private readonly SteadyStepsDbContext _context;
 
-        public UserService(DbContext context)
+        public UserService(SteadyStepsDbContext context)
         {
             _context = context;
         }
 
-        public async Task<User> GetUserByIdAsync(int userId)
+        public async Task<UserDto> GetUserByIdAsync(int userId)
         {
-            return await _context.Set<User>().FindAsync(userId);
+            var user = await _context.Users.Include(u => u.AuthTokens).FirstOrDefaultAsync(u => u.UserId == userId);
+            if (user == null) return null;
+
+            return new UserDto
+            {
+                UserId = user.UserId,
+                Username = user.Username,
+                Email = user.Email
+            };
         }
 
         public async Task<IEnumerable<User>> GetAllUsersAsync()

@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using SteadySteps.BLL.ServiceImplementations;
 using SteadySteps.BLL.ServiceInterfaces;
+using SteadySteps.DAL.Data;
 
 namespace SteadySteps.PL
 {
@@ -11,8 +12,13 @@ namespace SteadySteps.PL
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
-            builder.Services.AddControllers();
-            builder.Services.AddDbContext<DbContext>(options =>
+            builder.Services.AddControllers()
+                .AddJsonOptions(options =>
+                {
+                    options.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.Preserve;
+                    options.JsonSerializerOptions.DefaultIgnoreCondition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull;
+                });
+            builder.Services.AddDbContext<SteadyStepsDbContext>(options =>
                 options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
             // Register the IUserService and its implementation

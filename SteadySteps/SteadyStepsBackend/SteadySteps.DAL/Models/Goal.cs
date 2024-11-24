@@ -1,14 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using Microsoft.EntityFrameworkCore;
 
 namespace SteadySteps.DAL.Models;
 
 public partial class Goal
 {
     [Key]
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int GoalId { get; set; }
 
     public int? UserId { get; set; }
@@ -25,6 +24,8 @@ public partial class Goal
 
     [Column(TypeName = "timestamp without time zone")]
     public DateTime? CreatedAt { get; set; }
+
+    public bool IsDeleted { get; set; } = false;
 
     [ForeignKey("HabitId")]
     [InverseProperty("Goals")]

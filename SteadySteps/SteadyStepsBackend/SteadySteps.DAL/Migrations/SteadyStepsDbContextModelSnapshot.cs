@@ -36,6 +36,9 @@ namespace SteadySteps.DAL.Migrations
                     b.Property<DateTime?>("ExpiresAt")
                         .HasColumnType("timestamp without time zone");
 
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("boolean");
+
                     b.Property<string>("Token")
                         .IsRequired()
                         .HasMaxLength(255)
@@ -70,6 +73,9 @@ namespace SteadySteps.DAL.Migrations
 
                     b.Property<int?>("HabitId")
                         .HasColumnType("integer");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("boolean");
 
                     b.Property<DateOnly?>("StartDate")
                         .HasColumnType("date");
@@ -137,6 +143,9 @@ namespace SteadySteps.DAL.Migrations
                     b.Property<int?>("HabitId")
                         .HasColumnType("integer");
 
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("boolean");
+
                     b.Property<DateOnly>("LogDate")
                         .HasColumnType("date");
 
@@ -167,6 +176,9 @@ namespace SteadySteps.DAL.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("character varying(100)");
 
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("boolean");
+
                     b.Property<DateTime?>("LastLogin")
                         .HasColumnType("timestamp without time zone");
 
@@ -189,12 +201,6 @@ namespace SteadySteps.DAL.Migrations
                         .HasColumnType("character varying(50)");
 
                     b.HasKey("UserId");
-
-                    b.HasIndex(new[] { "Email" }, "Users_Email_Key")
-                        .IsUnique();
-
-                    b.HasIndex(new[] { "Username" }, "Users_Username_Key")
-                        .IsUnique();
 
                     b.ToTable("Users");
                 });
