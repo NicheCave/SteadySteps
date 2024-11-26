@@ -180,7 +180,7 @@ namespace SteadySteps.DAL.Migrations
                         .HasColumnType("boolean");
 
                     b.Property<DateTime?>("LastLogin")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("PasswordHash")
                         .IsRequired()
@@ -188,7 +188,7 @@ namespace SteadySteps.DAL.Migrations
                         .HasColumnType("character varying(255)");
 
                     b.Property<DateTime?>("RegisterDate")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("Role")
                         .IsRequired()

@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Cryptography.KeyDerivation;
 using Microsoft.EntityFrameworkCore;
 using SteadySteps.DTO.Objects;
 using SteadySteps.DAL.Models;
@@ -28,7 +30,8 @@ namespace SteadySteps.BLL.ServiceImplementations
             {
                 UserId = user.UserId,
                 Username = user.Username,
-                Email = user.Email
+                Email = user.Email,
+                Role = user.Role
             };
         }
 
@@ -37,10 +40,34 @@ namespace SteadySteps.BLL.ServiceImplementations
             return await _context.Set<User>().ToListAsync();
         }
 
-        public async Task<User> CreateUserAsync(User user)
+        public async Task<User> CreateUserAsync(string username, string email, string password)
         {
-            _context.Set<User>().Add(user);
+            byte[] salt = new byte[128 / 8];
+            using (var rng = RandomNumberGenerator.Create())
+            {
+                rng.GetBytes(salt);
+            }
+            string hashedPassword = Convert.ToBase64String(KeyDerivation.Pbkdf2(
+                password: password,
+                salt: salt,
+                prf: KeyDerivationPrf.HMACSHA256,
+                iterationCount: 10000,
+                numBytesRequested: 256 / 8));
+
+            var user = new User
+            {
+                Username = username,
+                Email = email,
+                PasswordHash = hashedPassword,
+                Role = "user",
+                RegisterDate = DateTime.UtcNow,
+                LastLogin = DateTime.UtcNow,
+                IsDeleted = false
+            };
+
+            _context.Users.Add(user);
             await _context.SaveChangesAsync();
+
             return user;
         }
 

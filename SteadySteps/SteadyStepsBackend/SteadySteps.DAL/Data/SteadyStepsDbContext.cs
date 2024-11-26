@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
+using SteadySteps.DAL.Configurations;
 using SteadySteps.DAL.Models;
 
 namespace SteadySteps.DAL.Data;
@@ -32,5 +33,11 @@ public partial class SteadyStepsDbContext : DbContext
         {
             optionsBuilder.UseNpgsql("Host=localhost;Database=SteadySteps;Username=postgres;Password=postgres");
         }
+    }
+    
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        base.OnModelCreating(modelBuilder);
+        modelBuilder.ApplyConfiguration(new UserConfiguration());
     }
 }

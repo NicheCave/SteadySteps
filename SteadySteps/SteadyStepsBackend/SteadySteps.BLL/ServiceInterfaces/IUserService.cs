@@ -10,7 +10,7 @@ namespace SteadySteps.BLL.ServiceInterfaces
     {
         Task<UserDto> GetUserByIdAsync(int userId);
         Task<IEnumerable<User>> GetAllUsersAsync();
-        Task<User> CreateUserAsync(User user);
+        Task<User> CreateUserAsync(string username, string email, string password);
         Task<User> UpdateUserAsync(User user);
         Task<bool> DeleteUserAsync(int userId);
     }
