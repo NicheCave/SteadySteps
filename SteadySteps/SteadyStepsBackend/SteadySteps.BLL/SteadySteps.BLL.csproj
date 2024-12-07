@@ -8,11 +8,15 @@
 
     <ItemGroup>
       <ProjectReference Include="..\SteadySteps.DAL\SteadySteps.DAL.csproj" />
-      <ProjectReference Include="..\SteadySteps.DTO\SteadySteps.DTO.csproj" />
     </ItemGroup>
 
     <ItemGroup>
+      <PackageReference Include="AutoMapper" Version="13.0.1" />
       <PackageReference Include="Microsoft.AspNetCore.Cryptography.KeyDerivation" Version="8.0.10" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Services\" />
     </ItemGroup>
 
 </Project>

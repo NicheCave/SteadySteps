@@ -1,37 +1,35 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace SteadySteps.DAL.Models;
 
 public partial class Goal
 {
-    [Key]
-    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-    public int GoalId { get; set; }
+    [Key] public Guid GoalId { get; set; } = Guid.NewGuid();
 
-    public int? UserId { get; set; }
+    public Guid? UserId { get; set; }
 
-    public int? HabitId { get; set; }
+    public Guid? HabitId { get; set; }
 
     public int? Target { get; set; }
 
     public int? CurrentProgress { get; set; }
 
+    [Required] public bool IsDeleted { get; set; } = false;
+
     public DateOnly? StartDate { get; set; }
 
     public DateOnly? EndDate { get; set; }
 
-    [Column(TypeName = "timestamp without time zone")]
-    public DateTime? CreatedAt { get; set; }
+    [Column(TypeName = "timestamp without time zone")] public DateTime? CreatedAt { get; set; }
 
-    public bool IsDeleted { get; set; } = false;
-
-    [ForeignKey("HabitId")]
-    [InverseProperty("Goals")]
+    [ForeignKey(nameof(HabitId))]
+    [JsonIgnore]
     public virtual Habit? Habit { get; set; }
-
-    [ForeignKey("UserId")]
-    [InverseProperty("Goals")]
+    
+    [ForeignKey(nameof(UserId))]
+    [JsonIgnore]
     public virtual User? User { get; set; }
 }

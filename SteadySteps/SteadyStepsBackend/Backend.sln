@@ -1,12 +1,10 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SteadySteps.PL", "SteadySteps.PL\SteadySteps.PL.csproj", "{72CB40DE-7B87-467C-92BC-5B724185756C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SteadySteps.WebHost", "SteadySteps.WebHost\SteadySteps.WebHost.csproj", "{72CB40DE-7B87-467C-92BC-5B724185756C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SteadySteps.BLL", "SteadySteps.BLL\SteadySteps.BLL.csproj", "{CAE26A8B-6EDC-4F8E-AAEA-041B1B10F5DB}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SteadySteps.DAL", "SteadySteps.DAL\SteadySteps.DAL.csproj", "{6C35AC2D-A7DC-4BF9-BC9A-73788354AA4E}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SteadySteps.DTO", "SteadySteps.DTO\SteadySteps.DTO.csproj", "{C7AB880A-96D9-4A2F-AD61-97A7D0C6BF0A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -26,9 +24,5 @@ Global
 		{6C35AC2D-A7DC-4BF9-BC9A-73788354AA4E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6C35AC2D-A7DC-4BF9-BC9A-73788354AA4E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6C35AC2D-A7DC-4BF9-BC9A-73788354AA4E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C7AB880A-96D9-4A2F-AD61-97A7D0C6BF0A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C7AB880A-96D9-4A2F-AD61-97A7D0C6BF0A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C7AB880A-96D9-4A2F-AD61-97A7D0C6BF0A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C7AB880A-96D9-4A2F-AD61-97A7D0C6BF0A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

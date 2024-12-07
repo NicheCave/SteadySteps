@@ -1,27 +1,25 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace SteadySteps.DAL.Models;
 
 public partial class HabitLog
 {
-    [Key]
-    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-    public int LogId { get; set; }
+    [Key] public Guid LogId { get; set; } = Guid.NewGuid();
 
-    public int? HabitId { get; set; }
+    public Guid HabitId { get; set; }
 
-    public DateOnly LogDate { get; set; }
+    [Required] public DateOnly LogDate { get; set; }
 
-    [StringLength(50)]
-    public string? Status { get; set; }
+    [MaxLength(50)] public string? Status { get; set; }
 
-    public string? Notes { get; set; }
+    [MaxLength(500)] public string? Notes { get; set; }
 
-    public bool IsDeleted { get; set; } = false;
+    [Required] public bool IsDeleted { get; set; } = false;
 
-    [ForeignKey("HabitId")]
-    [InverseProperty("HabitLogs")]
-    public virtual Habit? Habit { get; set; }
+    [ForeignKey(nameof(HabitId))]
+    [JsonIgnore]
+    public virtual Habit Habit { get; set; } = null!;
 }

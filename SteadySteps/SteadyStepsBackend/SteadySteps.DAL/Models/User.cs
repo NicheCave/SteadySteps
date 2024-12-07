@@ -3,26 +3,15 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
+using Microsoft.AspNetCore.Identity;
 
 namespace SteadySteps.DAL.Models;
 
-public partial class User
+public class User : IdentityUser<Guid>
 {
-    [Key]
-    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-    public int UserId { get; set; }
-
-    [StringLength(50)]
-    public string Username { get; set; } = null!;
-
-    [StringLength(255)]
-    public string PasswordHash { get; set; } = null!;
-
-    [StringLength(100)]
-    public string Email { get; set; } = null!;
-
+    [Required]
     [StringLength(20)]
-    public string Role { get; set; } = null!;
+    public UserRole Role { get; set; } = UserRole.User;
 
     [Column(TypeName = "timestamp without time zone")]
     public DateTime? RegisterDate { get; set; }
@@ -30,15 +19,13 @@ public partial class User
     [Column(TypeName = "timestamp without time zone")]
     public DateTime? LastLogin { get; set; }
 
+    [Required]
     public bool IsDeleted { get; set; } = false;
+}
 
-    [InverseProperty("User")]
-    [JsonIgnore]
-    public virtual ICollection<AuthToken> AuthTokens { get; set; } = new List<AuthToken>();
-
-    [InverseProperty("User")]
-    public virtual ICollection<Goal> Goals { get; set; } = new List<Goal>();
-
-    [InverseProperty("User")]
-    public virtual ICollection<Habit> Habits { get; set; } = new List<Habit>();
+public enum UserRole
+{
+    Admin,
+    User,
+    Moderator
 }
