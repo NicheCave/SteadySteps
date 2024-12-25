@@ -54,29 +54,28 @@ function RootComponent() {
                 <ModeToggle/>
                 {user ? <AvatarDropdown user={user} /> : null}
             </div>
-            <Toaster/>
-            <Outlet/>
+            <Toaster />
+            <Outlet />
         </React.Fragment>
     );
 }
 
+
 function AvatarDropdown({ user }: { user: z.infer<typeof schemas.UserVM> }) {
-    const { toast } = useToast(); // Hook to show toast notifications
+    const { toast } = useToast(); 
     const { mutate: logout } = apiHooks.usePostApiAuthLogout();
     const [isDialogOpen, setIsDialogOpen] = React.useState(false);
 
     const handleLogout = () => {
         logout(undefined, {
             onSuccess: () => {
-                // Show success toast on successful logout
                 toast({
                     title: "Logged Out",
                     description: "You have been successfully logged out.",
                 });
-                setIsDialogOpen(false); // Close the dialog
+                setIsDialogOpen(false);
             },
             onError: () => {
-                // Show error toast if logout fails
                 toast({
                     title: "Logout Failed",
                     description: "An error occurred while trying to log you out.",
