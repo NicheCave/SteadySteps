@@ -6,6 +6,7 @@ import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
 import { useState } from "react";
 import { useNavigate } from "@tanstack/react-router";
+import { apiHooks } from "@/client-hooks";
 
 export function LoginForm({
                             className,
@@ -15,6 +16,8 @@ export function LoginForm({
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const loginMutation = apiHooks.usePostApiAuthLogin();
 
   const handleForgotPassword = () => {
     toast({
@@ -29,28 +32,24 @@ export function LoginForm({
     navigate({ to: "/register" });
   };
 
-  const handleLogin = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    // Mock validation: Replace this with actual login validation logic
-    const isValidEmailAndPassword = email === "test@example.com" && password === "Test@123";
-
-    if (!isValidEmailAndPassword) {
+    try {
+      await loginMutation.mutateAsync({ email, password });
+      toast({
+        title: "Login Successful",
+        description: "You have been logged in successfully.",
+      });
+      navigate({ to: "/" });
+    } catch {
       toast({
         title: "Invalid email or password",
         description: "Please check your credentials and try again.",
         variant: "destructive",
       });
-      setPassword(""); // Clear only the password field
-      return;
+      setPassword("");
     }
-
-    toast({
-      title: "Login Successful",
-      description: "You have been logged in successfully.",
-    });
-
-    // Add logic for successful login (e.g., navigation)
   };
 
   return (

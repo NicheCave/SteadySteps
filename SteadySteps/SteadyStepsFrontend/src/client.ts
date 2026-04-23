@@ -9,7 +9,7 @@ const UserIM = z.object({
 });
 
 const UserVM = z.object({
-    id: z.string().uuid(),
+    userId: z.string().uuid(),
     username: z.string().nullable(),
     email: z.string().nullable(),
 });
@@ -72,7 +72,11 @@ const endpoints = makeApi([
 ]);
 
 // Create a Zodios instance with the defined endpoints
-export const api = new Zodios(endpoints);
+export const api = new Zodios("https://localhost:7271", endpoints, {
+    axiosConfig: {
+        withCredentials: true,
+    },
+});
 
 // Function to create a Zodios API client with a base URL and optional settings
 export function createApiClient(baseUrl: string, options?: ZodiosOptions) {

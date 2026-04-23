@@ -12,6 +12,7 @@ import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
 import { useNavigate } from "@tanstack/react-router";
 import { useState } from "react";
+import { apiHooks } from "@/client-hooks";
 
 export function RegisterForm({
                                  className,
@@ -19,6 +20,8 @@ export function RegisterForm({
                              }: React.ComponentProps<"div">) {
     const { toast } = useToast();
     const navigate = useNavigate();
+    const registerMutation = apiHooks.usePostApiAuthRegister();
+    const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
@@ -28,7 +31,7 @@ export function RegisterForm({
         navigate({ to: "/login" });
     };
 
-    const handleRegister = (e: React.FormEvent<HTMLFormElement>) => {
+    const handleRegister = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
         // Email validation
@@ -71,12 +74,20 @@ export function RegisterForm({
             return;
         }
 
-        toast({
-            title: "Registration Successful",
-            description: "You have been registered successfully.",
-        });
-
-        // Handle registration submission logic here
+        try {
+            await registerMutation.mutateAsync({ username, email, password });
+            toast({
+                title: "Registration Successful",
+                description: "Your account has been created. Please log in.",
+            });
+            navigate({ to: "/login" });
+        } catch {
+            toast({
+                title: "Registration Failed",
+                description: "An error occurred during registration. Please try again.",
+                variant: "destructive",
+            });
+        }
     };
 
     return (
@@ -129,6 +140,8 @@ export function RegisterForm({
                                     id="username"
                                     type="text"
                                     placeholder="Enter your username"
+                                    value={username}
+                                    onChange={(e) => setUsername(e.target.value)}
                                     required
                                 />
                             </div>
