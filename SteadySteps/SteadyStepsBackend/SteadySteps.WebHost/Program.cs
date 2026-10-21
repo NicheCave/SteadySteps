@@ -1,5 +1,6 @@
 using SteadySteps.DAL.Data;
 using SteadySteps.WebHost;
+using SteadySteps.WebHost.Seeding;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -13,6 +14,7 @@ builder.AddIdentity();
 builder.AddCors();
 builder.AddAutoMapper();
 builder.AddServices();
+builder.AddDemoData();
 
 var app = builder.Build();
 
@@ -28,6 +30,19 @@ await using (var scope = app.Services.CreateAsyncScope())
     {
         var logger = services.GetRequiredService<ILogger<Program>>();
         logger.LogError(ex, "An error occurred while applying migrations.");
+    }
+
+    if (app.Environment.IsDevelopment())
+    {
+        try
+        {
+            await services.GetRequiredService<DemoDataSeeder>().SeedAsync();
+        }
+        catch (Exception ex)
+        {
+            var logger = services.GetRequiredService<ILogger<Program>>();
+            logger.LogError(ex, "An error occurred while seeding demo data.");
+        }
     }
 }
 

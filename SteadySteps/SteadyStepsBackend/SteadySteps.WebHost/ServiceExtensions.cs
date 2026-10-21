@@ -2,6 +2,8 @@
 using SteadySteps.BLL;
 using SteadySteps.DAL.Data;
 using SteadySteps.DAL.Models;
+using SteadySteps.WebHost.Seeding;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.ModelBinding.Metadata;
 using Microsoft.EntityFrameworkCore;
@@ -45,6 +47,16 @@ public static class ServiceExtensions
             })
             .AddEntityFrameworkStores<SteadyStepsDbContext>()
             .AddDefaultTokenProviders();
+
+        // The frontend (http://localhost:5173) and this API (https://localhost:7271) differ
+        // in scheme, so browsers treat them as cross-site under "schemeful same-site" rules.
+        // The default SameSite=Lax cookie gets silently dropped on cross-site XHR requests —
+        // SameSite=None (with Secure, which None requires) is needed for the cookie to be sent.
+        builder.Services.ConfigureApplicationCookie(opt =>
+        {
+            opt.Cookie.SameSite = SameSiteMode.None;
+            opt.Cookie.SecurePolicy = CookieSecurePolicy.Always;
+        });
     }
 
     public static void AddLogging(this WebApplicationBuilder builder)
@@ -70,5 +82,12 @@ public static class ServiceExtensions
     public static void AddAutoMapper(this WebApplicationBuilder builder)
     {
         builder.Services.AddAutoMapper();
+    }
+
+    public static void AddDemoData(this WebApplicationBuilder builder)
+    {
+        builder.Services.Configure<DemoDataOptions>(
+            builder.Configuration.GetSection(DemoDataOptions.SectionName));
+        builder.Services.AddScoped<DemoDataSeeder>();
     }
 }

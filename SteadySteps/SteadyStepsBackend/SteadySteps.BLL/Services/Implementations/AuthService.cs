@@ -27,7 +27,7 @@ public class AuthService(SignInManager<User> signInManager, UserManager<User> us
                 }
             });
 
-        var result = await signInManager.PasswordSignInAsync(user, loginIm.Password, true, false);
+        var result = await signInManager.PasswordSignInAsync(user, loginIm.Password, true, lockoutOnFailure: true);
 
         if (!result.Succeeded)
             throw new IdentityException(new[]
@@ -38,11 +38,24 @@ public class AuthService(SignInManager<User> signInManager, UserManager<User> us
                     Description = "Invalid email or password."
                 }
             });
+
+        user.LastLogin = DateTime.UtcNow;
+        await userManager.UpdateAsync(user);
     }
 
     public async Task SignOutAsync(CancellationToken ct = default)
     {
         await signInManager.SignOutAsync();
+    }
+
+    /// <summary>
+    /// Reissues the auth cookie from the user's current security stamp. Changing a
+    /// password (or an e-mail address) rotates that stamp, which would otherwise
+    /// invalidate the caller's own cookie and log them out mid-request.
+    /// </summary>
+    public async Task RefreshSignInAsync(User user, CancellationToken ct = default)
+    {
+        await signInManager.RefreshSignInAsync(user);
     }
 
     public Task<User?> AuthenticateUserAsync(ClaimsPrincipal userClaims, CancellationToken ct = default)

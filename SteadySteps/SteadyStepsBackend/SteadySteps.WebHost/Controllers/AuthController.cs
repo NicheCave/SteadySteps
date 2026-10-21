@@ -13,7 +13,8 @@ public class AuthController(
     IUserService userService,
     IAuthService authService,
     ICurrentUser currentUser,
-    IMapper mapper)
+    IMapper mapper,
+    ILogger<AuthController> logger)
     : BaseController(authService, currentUser)
 {
     private readonly IAuthService _authService = authService;
@@ -33,9 +34,16 @@ public class AuthController(
             var user = await userService.CreateUserAsync(userIm, ct);
             return Json(user);
         }
-        catch (Exception e)
+        catch (IdentityException e)
         {
             return ValidationProblem(detail: e.Message, type: "invalid-user-register-data");
+        }
+        catch (Exception e)
+        {
+            logger.LogError(e, "Unexpected error while registering a user.");
+            return ValidationProblem(
+                detail: "An unexpected error occurred while registering. Please try again.",
+                type: "invalid-user-register-data");
         }
     }
 

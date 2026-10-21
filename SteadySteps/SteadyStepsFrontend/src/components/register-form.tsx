@@ -13,6 +13,7 @@ import { useToast } from "@/hooks/use-toast";
 import { useNavigate } from "@tanstack/react-router";
 import { useState } from "react";
 import { apiHooks } from "@/client-hooks";
+import { isAxiosError } from "axios";
 
 export function RegisterForm({
                                  className,
@@ -81,10 +82,14 @@ export function RegisterForm({
                 description: "Your account has been created. Please log in.",
             });
             navigate({ to: "/login" });
-        } catch {
+        } catch (error) {
+            const detail =
+                isAxiosError(error) && typeof error.response?.data?.detail === "string"
+                    ? error.response.data.detail
+                    : "An error occurred during registration. Please try again.";
             toast({
                 title: "Registration Failed",
-                description: "An error occurred during registration. Please try again.",
+                description: detail,
                 variant: "destructive",
             });
         }

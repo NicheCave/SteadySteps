@@ -32,5 +32,10 @@ public partial class SteadyStepsDbContext : IdentityDbContext<User, IdentityRole
             .WithMany(h => h.HabitLogs)
             .HasForeignKey(hl => hl.HabitId)
             .OnDelete(DeleteBehavior.Cascade);
+
+        modelBuilder.Entity<User>().HasQueryFilter(u => !u.IsDeleted);
+        modelBuilder.Entity<Habit>().HasQueryFilter(h => !h.IsDeleted);
+        modelBuilder.Entity<Goal>().HasQueryFilter(g => !g.IsDeleted);
+        modelBuilder.Entity<HabitLog>().HasQueryFilter(hl => !hl.IsDeleted);
     }
 }

@@ -11,10 +11,13 @@ public static class ServiceExtensions
         services.AddScoped<IUserService, UserService>();
         services.AddScoped<IAuthService, AuthService>();
         services.AddScoped<ICurrentUser, CurrentUser>();
+        services.AddScoped<IHabitService, HabitService>();
+        services.AddScoped<IGoalService, GoalService>();
+        services.AddScoped<IHabitLogService, HabitLogService>();
     }
 
     public static void AddAutoMapper(this IServiceCollection services)
     {
-        services.AddAutoMapper(typeof(Mappings));
+        services.AddAutoMapper(_ => { }, typeof(Mappings));
     }
 }

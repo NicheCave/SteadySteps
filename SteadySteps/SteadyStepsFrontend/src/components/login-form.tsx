@@ -6,6 +6,7 @@ import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
 import { useState } from "react";
 import { useNavigate } from "@tanstack/react-router";
+import { useQueryClient } from "@tanstack/react-query";
 import { apiHooks } from "@/client-hooks";
 
 export function LoginForm({
@@ -14,6 +15,7 @@ export function LoginForm({
                           }: React.ComponentProps<"div">) {
   const { toast } = useToast();
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -37,6 +39,10 @@ export function LoginForm({
 
     try {
       await loginMutation.mutateAsync({ email, password });
+      // The Self query (and anything else fetched pre-login) is stale now that
+      // the auth cookie has changed — without this, __root's redirect check keeps
+      // seeing the old "unauthenticated" result until something forces a refetch.
+      await queryClient.invalidateQueries();
       toast({
         title: "Login Successful",
         description: "You have been logged in successfully.",

@@ -10,6 +10,7 @@ namespace SteadySteps.BLL.Services.Interfaces
     {
         Task SignInAsync(UserLoginIm loginIm, CancellationToken ct = default);
         Task SignOutAsync(CancellationToken ct = default);
+        Task RefreshSignInAsync(User user, CancellationToken ct = default);
         Task<User?> AuthenticateUserAsync(ClaimsPrincipal claimsPrincipal, CancellationToken ct = default);
     }
 }

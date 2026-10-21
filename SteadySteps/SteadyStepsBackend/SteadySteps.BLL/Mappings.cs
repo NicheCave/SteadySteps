@@ -10,11 +10,13 @@ internal class Mappings : Profile
 {
     public Mappings()
     {
-        CreateMap<User, UserVm>();
+        CreateMap<User, UserVm>()
+            .ForMember(dest => dest.UserId, opt => opt.MapFrom(src => src.Id));
         CreateMap<UserIm, User>();
-        
+
         CreateMap<Habit, HabitVM>();
         CreateMap<HabitVM, Habit>();
+        CreateMap<HabitIm, Habit>();
         
         CreateMap<Goal, GoalVm>();
         CreateMap<GoalVm, Goal>();

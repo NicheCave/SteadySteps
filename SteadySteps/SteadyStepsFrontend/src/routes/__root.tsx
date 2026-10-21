@@ -27,6 +27,7 @@ import { apiHooks } from "@/client-hooks";
 import { schemas } from "@/client";
 import { z } from "zod";
 import { useNavigate } from "@tanstack/react-router";
+import { useQueryClient } from "@tanstack/react-query";
 
 export const Route = createRootRoute({
     component: RootComponent,
@@ -62,13 +63,18 @@ function RootComponent() {
 
 
 function AvatarDropdown({ user }: { user: z.infer<typeof schemas.UserVM> }) {
-    const { toast } = useToast(); 
+    const { toast } = useToast();
+    const queryClient = useQueryClient();
     const { mutate: logout } = apiHooks.usePostApiAuthLogout();
     const [isDialogOpen, setIsDialogOpen] = React.useState(false);
 
     const handleLogout = () => {
         logout(undefined, {
-            onSuccess: () => {
+            onSuccess: async () => {
+                // Same reasoning as login: the auth cookie just changed, so every
+                // cached query (Self, Habit, Goal, HabitLog, ...) is stale and must
+                // be invalidated or the next user could briefly see this one's data.
+                await queryClient.invalidateQueries();
                 toast({
                     title: "Logged Out",
                     description: "You have been successfully logged out.",

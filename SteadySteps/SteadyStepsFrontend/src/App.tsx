@@ -1,4 +1,5 @@
 import { ThemeProvider } from "./components/theme-provider"
+import { PreferencesProvider } from "./lib/preferences"
 import { RouterProvider, createRouter } from '@tanstack/react-router';
 
 // Import the generated route tree
@@ -20,7 +21,9 @@ const queryClient = new QueryClient();
 export default function App() {
     return <QueryClientProvider client={queryClient}>
         <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
-            <RouterProvider router={router} />
+            <PreferencesProvider>
+                <RouterProvider router={router} />
+            </PreferencesProvider>
         </ThemeProvider>
     </QueryClientProvider>;
 }
